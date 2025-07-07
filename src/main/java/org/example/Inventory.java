@@ -19,22 +19,58 @@ public class Inventory {
     }
 
 //    addProduct(Parameters)
-    public String addProduct(HashMap<String, Integer> products, String productName, Integer productQuantity) {
-        return "Product Added!";
+    public boolean addProduct(HashMap<String, Integer> products, String productName, Integer productQuantity) {
+        // check if valid quantity
+        if (productQuantity < 0) {
+            System.out.println("Invalid Quantity.");
+            return false;
+        }
+        products.put(productName, productQuantity);
+        return true;
     }
 
 //    checkProduct(Parameters)
+    public boolean checkProduct(HashMap<String, Integer> products, String productName) {
+        //check if product in products
+        if (!products.containsKey(productName)) {
+            return false;
+        } else {
+            // if product in products, check if in store or not
+            if (products.get(productName) == 0) {
+                System.out.println("Product is out of stock!");
+            } else {
+                System.out.println(productName + " is in stock: " + products.get(productName));
+            }
+            return true;
+        }
+    }
+
 //    updateProduct(Parameters)
-    public String updateProduct(HashMap<String, Integer> products, String productName, Integer productQuantity, Integer newQuantity) {
-        return "Product Updated!";
+    public boolean updateProduct(HashMap<String, Integer> products, String productName, Integer productQuantity, Integer newQuantity) {
+        // check if valid quantity
+        if (newQuantity < 0) {
+            System.out.println("Invalid Quantity.");
+            return false;
+        }
+        products.put(productName, newQuantity);
+        System.out.println("Product Updated!");
+        return true;
     }
 
 //    removeProduct(Parameters)
-    public String productRemoved(HashMap<String, Integer> products, String productName) {
-        return "Product Removed!";
+    public boolean removeProduct(HashMap<String, Integer> products, String productName) {
+        if (!products.containsKey(productName)) {
+            return false;
+        }
+
+        products.remove(productName);
+        System.out.println("Product Removed!");
+        return true;
     }
+
 //    viewInventory(Parameters)
     public void displayProduct(HashMap<String, Integer> products) {
+        System.out.println("--- Inventory List ---");
         for (Map.Entry<String, Integer> product : products.entrySet()) {
             System.out.print(product.getKey() + " - " + product.getValue());
 
