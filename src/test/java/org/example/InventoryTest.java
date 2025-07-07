@@ -27,7 +27,6 @@ class InventoryTest {
         HashMap<String, Integer> products = new HashMap<>();
         inventory = new Inventory(products);
         boolean addProductSuccess = inventory.addProduct(products, "Bread", 50);
-
         assertTrue(addProductSuccess);
     }
 //
@@ -40,6 +39,10 @@ class InventoryTest {
 //
 //    @Test
 //    void addProductZeroQuantity {
+//
+//    }
+//    @Test
+//    void addProductDuplicateName {
 //
 //    }
 //
