@@ -31,6 +31,7 @@ public class Inventory {
             return false;
         }
         products.put(productName, productQuantity);
+        System.out.println("Product added!");
         return true;
     }
 
