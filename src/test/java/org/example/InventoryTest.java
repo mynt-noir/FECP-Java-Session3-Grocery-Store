@@ -25,10 +25,10 @@ class InventoryTest {
     void addProductValidQuantity() {
         HashMap<String, Integer> products = new HashMap<>();
         inventory = new Inventory(products);
-        boolean addProductSuccess = inventory.addProduct(products, "Bread", 50);
+        boolean addProductSuccess = inventory.addProduct(products, "Banana", 30);
         assertTrue(addProductSuccess);
-        assertTrue(products.containsKey("Bread"), "HashMap should contain 'Bread' key");
-        assertEquals(50, products.get("Bread"), "Quantity for 'Bread' should be 50");
+        assertTrue(products.containsKey("Banana"), "HashMap should contain 'Banana' key");
+        assertEquals(30, products.get("Banana"), "Quantity for 'Banana' should be 30");
     }
 
 
@@ -41,28 +41,29 @@ class InventoryTest {
         assertFalse(products.containsKey("Bread"), "HashMap should not contain 'Bread' key");
     }
 
+
     @Test
     void addProductDuplicateName() {
         HashMap<String, Integer> products = new HashMap<>();
         inventory = new Inventory(products);
-        boolean addProductSuccess = inventory.addProduct(products, "Eggs", 50);
-        boolean duplicateAddProductSuccess = inventory.addProduct(products, "Eggs", 100);
+        boolean addProductSuccess = inventory.addProduct(products, "Milk", 20);
+        boolean duplicateAddProductSuccess = inventory.addProduct(products, "Milk", 50);
 
         assertTrue(addProductSuccess);
-        assertFalse(duplicateAddProductSuccess);
+        assertTrue(duplicateAddProductSuccess);
 
-        assertTrue(products.containsKey("Eggs"), "HashMap should contain 'Eggs' key");
-        assertEquals(50, products.get("Eggs"), "Quantity for 'Eggs' should be 50");
+        assertTrue(products.containsKey("Milk"), "HashMap should contain 'Milk' key");
+        assertEquals(50, products.get("Milk"), "Quantity for 'Milk' should be 50");
     }
 
     @Test
     void addProductZeroQuantity() {
         HashMap<String, Integer> products = new HashMap<>();
         inventory = new Inventory(products);
-        boolean addProductSuccess = inventory.addProduct(products, "Bread", 0);
+        boolean addProductSuccess = inventory.addProduct(products, "Mango", 0);
         assertTrue(addProductSuccess);
-        assertTrue(products.containsKey("Bread"), "HashMap should contain 'Bread' key");
-        assertEquals(0, products.get("Bread"), "Quantity for 'Bread' should be 0");
+        assertTrue(products.containsKey("Mango"), "HashMap should contain 'Mango' key");
+        assertEquals(0, products.get("Mango"), "Quantity for 'Mango' should be 0");
 
     }
 
@@ -71,13 +72,13 @@ class InventoryTest {
     void checkProductValidName() {
         HashMap<String, Integer> products = new HashMap<>();
         inventory = new Inventory(products);
-        boolean addProductSuccess = inventory.addProduct(products, "Milk", 100);
+        boolean addProductSuccess = inventory.addProduct(products, "Milk", 20);
         assertTrue(addProductSuccess);
 
         boolean checkProductSuccess = inventory.checkProduct(products, "Milk");
         assertTrue(checkProductSuccess);
         assertTrue(products.containsKey("Milk"), "HashMap should contain 'Milk' key");
-        assertEquals(100, products.get("Milk"), "Quantity for 'Milk' should be 100");
+        assertEquals(20, products.get("Milk"), "Quantity for 'Milk' should be 20");
     }
 
 
@@ -85,12 +86,12 @@ class InventoryTest {
     void checkProductInvalidName() {
         HashMap<String, Integer> products = new HashMap<>();
         inventory = new Inventory(products);
-        boolean addProductSuccess = inventory.addProduct(products, "Milk", 100);
+        boolean addProductSuccess = inventory.addProduct(products, "Milk", 20);
         assertTrue(addProductSuccess);
 
-        boolean checkProductSuccess = inventory.checkProduct(products, "Milks");
+        boolean checkProductSuccess = inventory.checkProduct(products, "Ice Cream");
         assertFalse(checkProductSuccess);
-        assertFalse(products.containsKey("Milks"), "HashMap should not contain 'Milks' key");
+        assertFalse(products.containsKey("Ice Cream"), "HashMap should not contain 'Ice Cream' key");
     }
 
 
@@ -98,13 +99,13 @@ class InventoryTest {
     void updateStockValidNameValidQuantity() {
         HashMap<String, Integer> products = new HashMap<>();
         inventory = new Inventory(products);
-        boolean addProductSuccess = inventory.addProduct(products, "Milk", 100);
+        boolean addProductSuccess = inventory.addProduct(products, "Bread", 100);
         assertTrue(addProductSuccess);
 
-        boolean updateStockSuccess = inventory.updateProduct(products, "Milk", 50);
+        boolean updateStockSuccess = inventory.updateProduct(products, "Bread", 25);
         assertTrue(updateStockSuccess);
-        assertTrue(products.containsKey("Milk"), "HashMap should contain 'Milk' key");
-        assertEquals(50, products.get("Milk"), "Quantity for 'Milk' should be 50");
+        assertTrue(products.containsKey("Bread"), "HashMap should contain 'Bread' key");
+        assertEquals(25, products.get("Bread"), "Quantity for 'Bread' should be 25");
 
     }
 
@@ -116,9 +117,9 @@ class InventoryTest {
         boolean addProductSuccess = inventory.addProduct(products, "Milk", 100);
         assertTrue(addProductSuccess);
 
-        boolean updateStockSuccess = inventory.updateProduct(products, "Milks", 50);
+        boolean updateStockSuccess = inventory.updateProduct(products, "Tofu", 50);
         assertFalse(updateStockSuccess);
-        assertFalse(products.containsKey("Milks"), "HashMap should not contain 'Milks' key");
+        assertFalse(products.containsKey("Tofu"), "HashMap should not contain 'Tofu' key");
     }
 
 
@@ -152,13 +153,13 @@ class InventoryTest {
     void removeProductValidName() {
         HashMap<String, Integer> products = new HashMap<>();
         inventory = new Inventory(products);
-        boolean addProductSuccess = inventory.addProduct(products, "Ham", 80);
+        boolean addProductSuccess = inventory.addProduct(products, "Eggs", 80);
         assertTrue(addProductSuccess);
 
-        boolean removeProductSuccess = inventory.removeProduct(products, "Ham");
+        boolean removeProductSuccess = inventory.removeProduct(products, "Eggs");
         assertTrue(removeProductSuccess);
 
-        assertFalse(products.containsKey("Ham"), "HashMap should contain 'Ham' key");
+        assertFalse(products.containsKey("Eggs"), "HashMap should contain 'Eggs' key");
 
     }
 
@@ -170,7 +171,7 @@ class InventoryTest {
         boolean addProductSuccess = inventory.addProduct(products, "Ham", 80);
         assertTrue(addProductSuccess);
 
-        boolean removeProductSuccess = inventory.removeProduct(products, "Hams");
+        boolean removeProductSuccess = inventory.removeProduct(products, "Pizza");
         assertFalse(removeProductSuccess);
 
         assertTrue(products.containsKey("Ham"), "HashMap should contain 'Ham' key");

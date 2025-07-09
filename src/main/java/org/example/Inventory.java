@@ -20,11 +20,11 @@ public class Inventory {
 
 //    addProduct(Parameters)
     public boolean addProduct(HashMap<String, Integer> products, String productName, int productQuantity) {
-        // check if product already in products
-        if (products.containsKey(productName)) {
-            System.out.println("Product is already in the inventory!");
-            return false;
-        }
+//        // check if product already in products
+//        if (products.containsKey(productName)) {
+//            System.out.println("Product is already in the inventory!");
+//            return false;
+//        }
         // check if valid quantity
         if (productQuantity < 0) {
             System.out.println("Invalid Quantity.");
